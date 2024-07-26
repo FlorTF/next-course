@@ -4,6 +4,7 @@ app
 Es la carpeta que contiene todas las rutas de nuestra aplicacion. 
 
 Ruta: http://localhost:3000
+page y layout son nombres reservados por NextJS
 app/page.jsx
 Al crear este componente se crea en automatico el layout.js
 Es la ruta principal, debido a que esta en el primer nivel de la carpeta app
@@ -32,11 +33,6 @@ Al crear este componente en el tercer nivel de la carpeta app, ya no se crea un 
 Ruta: http://localhost:3000/tienda/categorias/laptops
 app/tienda/page.jsx
 Al crear este componente en el cuarto nivel de la carpeta app, ya no se crea un layout.js automatico
-*/
-
-/*
-**LINK**
-
 */
 
 import React from 'react'
