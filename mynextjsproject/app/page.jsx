@@ -35,12 +35,36 @@ app/tienda/page.jsx
 Al crear este componente en el cuarto nivel de la carpeta app, ya no se crea un layout.js automatico
 */
 
-import React from 'react'
+/*
+** REACT SERVER COMPONENTS **
+Para saber cuales se renderizan en el servidor y cuales en el cliente: https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns
+NextJS es un framework que tiene caracteristicas de backend como de frontend, y que unidos les da a los desarrolladores la posibilidad de elegir en que pagina añadir cierta caracteristica.
+Contexto:
+- Server-Side Rendering (SSR): Cuando una página o un componente se renderiza en el servidor, solo se genera HTML y CSS. En esta fase, no se ejecuta JavaScript, por lo que no se pueden manejar eventos como onClick.
+- Client-Side Rendering (CSR): Los eventos como onClick necesitan ejecutarse en el cliente, ya que dependen de la interacción del usuario y la ejecución de JavaScript.
+Problema:
+Por defecto los componentes estan procesados por el backend(servidor)
+Si queremos usar cosas netamente del frontend(cliente) como eventos onclick, useEffect, hooks, etc, debemos usar el 'use client', porque sino la página no se renderizará y nos mostrará error.
+Explicacion error: 
+Este error es por que los componentes son creados desde el servidor y desde el servidor no se puede ejecutar un onClick, debido a que el onClick se ejecuta en el frontend. Entonces, como el onClick necesita manejar codigo JS, el componente que lo contiene ya no se va a renderizar en el backend, sino que obligatoriamente se tiene que renderizar en el frontend.
+Solucion:
+Usar la directiva 'use client' para asegurar que los componentes que necesitan manejar eventos del usuario se rendericen en el cliente
+
+Nota: Usamos componentes dentro de componentes, si el componente padre tiene 'use client', los componentes hijos tambien estarian afectados y es como si tambien tuvieran 'use client'.
+Nota 2: Los metadata solo funcionan en componentes del lado del servidor, es decir, los que no tienen el 'use client'. 
+*/
+"use client";
+import React from "react";
 
 function HomePage() {
   return (
-    <h1>HomePage</h1>
-  )
+    <section>
+      <h1>hello world</h1>
+      <button onClick={() => {
+        alert('hello')
+      }}>Click</button>
+    </section>
+  );
 }
 
-export default HomePage
+export default HomePage;

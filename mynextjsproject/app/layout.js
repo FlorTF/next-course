@@ -1,9 +1,28 @@
 import Navbar from "../components/Navbar";
+import {Roboto} from 'next/font/google'
 export const metadata = {
   title: "My store",
   description: "This is my store",
   keyword: "store, online, ecommerce" 
 };
+
+const roboto = Roboto({
+  weight:["300", "400", "500", "700"],
+  styles:["italic", "normal"],
+  subsets: ["latin"]
+})
+
+/*
+**FONTS**
+En layout.jsx
+Usamos las fuentes para estilizar los estilos por defecto de los textos.
+1. Importaremos desde el modulo 'next/font', lo que nos facilitara el uso de Google Fonts en NextJS.
+2. Configuramos la fuente, como si de una funcion se tratara y que tendra como argumento un objeto donde especificaremos la configuracion de la fuente como weight, styles, subsets, etc.
+3. Utilizamos la fuente deseada en RootLayout ya que contiene toda la aplicacion.
+
+*/
+
+
 
 /*
 
@@ -42,7 +61,7 @@ Entonces en lugar de utilizar la etiqueta <a>, Next nos ofrece un componente esp
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.className} >
        <Navbar/>
         {children}
       </body>
